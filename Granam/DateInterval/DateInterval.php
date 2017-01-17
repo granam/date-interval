@@ -1,8 +1,5 @@
 <?php
-
-namespace Herrera\DateInterval;
-
-use InvalidArgumentException;
+namespace Granam\DateInterval;
 
 /**
  * Adds functionality to the DateInterval class.
@@ -34,7 +31,6 @@ class DateInterval extends \DateInterval
 
     /**
      * The number of seconds in a month.
-     *
      * Based on a 30.4368 day month, with the product rounded.
      *
      * @var integer
@@ -43,7 +39,6 @@ class DateInterval extends \DateInterval
 
     /**
      * The number of seconds in a year.
-     *
      * Based on a 365.2416 day year, with the product rounded.
      *
      * @var integer
@@ -55,14 +50,14 @@ class DateInterval extends \DateInterval
      *
      * @var array
      */
-    private static $date = array('y' => 'Y', 'm' => 'M', 'd' => 'D');
+    private static $date = ['y' => 'Y', 'm' => 'M', 'd' => 'D'];
 
     /**
      * The time properties.
      *
      * @var array
      */
-    private static $time = array('h' => 'H', 'i' => 'M', 's' => 'S');
+    private static $time = ['h' => 'H', 'i' => 'M', 's' => 'S'];
 
     /**
      * Returns the interval specification.
@@ -71,37 +66,36 @@ class DateInterval extends \DateInterval
      */
     public function __toString()
     {
-        return self::toSpec($this);
+        return $this->toSpec($this);
     }
 
     /**
      * Returns the DateInterval instance for the number of seconds.
      *
      * @param integer|string $seconds The number of seconds.
-     *
      * @return DateInterval The date interval.
      */
     public static function fromSeconds($seconds)
     {
         $interval = new static('PT0S');
 
-        foreach (array(
-            'y' => self::SECONDS_YEAR,
-            'm' => self::SECONDS_MONTH,
-            'd' => self::SECONDS_DAY,
-            'h' => self::SECONDS_HOUR,
-            'i' => self::SECONDS_MINUTE
-        ) as $property => $increment) {
+        foreach ([
+                     'y' => self::SECONDS_YEAR,
+                     'm' => self::SECONDS_MONTH,
+                     'd' => self::SECONDS_DAY,
+                     'h' => self::SECONDS_HOUR,
+                     'i' => self::SECONDS_MINUTE,
+                 ] as $timeUnit => $increment) {
             if (-1 !== bccomp($seconds, $increment)) {
                 $count = floor(bcdiv($seconds, $increment, 1));
 
-                $interval->$property = $count;
+                $interval->$timeUnit = $count;
 
                 $seconds = bcsub($seconds, bcmul($count, $increment));
             }
         }
 
-        $interval->s = (int) $seconds;
+        $interval->s = (int)$seconds;
 
         return $interval;
     }
@@ -110,16 +104,15 @@ class DateInterval extends \DateInterval
      * Returns the total number of seconds in the interval.
      *
      * @param \DateInterval $interval The date interval.
-     *
      * @return string The number of seconds.
      */
     public function toSeconds(\DateInterval $interval = null)
     {
-        if ((null === $interval) && isset($this)) {
+        if ($interval === null) {
             $interval = $this;
         }
 
-        $seconds = (string) $interval->s;
+        $seconds = (string)$interval->s;
 
         if ($interval->i) {
             $seconds = bcadd($seconds, bcmul($interval->i, self::SECONDS_MINUTE));
@@ -149,14 +142,12 @@ class DateInterval extends \DateInterval
      * returned by `DateTime::diff()`.
      *
      * @param \DateInterval $interval The date interval.
-     *
      * @return string The number of seconds.
-     *
-     * @throws InvalidArgumentException If "days" is not set.
+     * @throws \InvalidArgumentException If "days" is not set.
      */
     public static function toSecondsUsingDays(\DateInterval $interval)
     {
-        $seconds = (string) $interval->s;
+        $seconds = (string)$interval->s;
 
         if ($interval->i) {
             $seconds = bcadd($seconds, bcmul($interval->i, self::SECONDS_MINUTE));
@@ -169,9 +160,7 @@ class DateInterval extends \DateInterval
         if ((false !== $interval->days) && (0 <= $interval->days)) {
             $seconds = bcadd($seconds, bcmul($interval->days, self::SECONDS_DAY));
         } else {
-            throw new InvalidArgumentException(
-                'The "days" property is not set.'
-            );
+            throw new \InvalidArgumentException('The "days" property is not set.');
         }
 
         return $seconds;
@@ -181,12 +170,11 @@ class DateInterval extends \DateInterval
      * Returns the interval specification.
      *
      * @param \DateInterval $interval The date interval.
-     *
      * @return string The interval specification.
      */
     public function toSpec(\DateInterval $interval = null)
     {
-        if ((null === $interval) && isset($this)) {
+        if (null === $interval) {
             $interval = $this;
         }
 

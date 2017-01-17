@@ -1,7 +1,7 @@
 .*
 !.gitignore
 !.travis.yml
+!.codeclimate.yml
 composer.lock
-bin/
-coverage/
-src/vendors/
+/vendor
+/phpunit_log
