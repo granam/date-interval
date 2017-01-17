@@ -4,7 +4,9 @@
   "keywords": [
     "date",
     "time",
-    "interval"
+    "interval",
+    "seconds",
+    "spec"
   ],
   "homepage": "https://github.com/jaroslavtyc/granam-date-interval",
   "license": "MIT",
