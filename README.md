@@ -1,7 +1,7 @@
 DateInterval
 ============
 
-[![Build Status](https://travis-ci.org/granam/granam-date-interval.png)](http://travis-ci.org/granam/granam-date-interval)
+[![Build Status](https://travis-ci.org/jaroslavtyc/granam-date-interval.png)](http://travis-ci.org/jaroslavtyc/granam-date-interval)
 
 Provides additional functionality to the DateInterval class.
 
