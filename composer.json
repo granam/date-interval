@@ -21,11 +21,11 @@
     "issues": "https://github.com/jaroslavtyc/granam-date-interval/issues"
   },
   "require": {
-    "php": ">=5.3",
+    "php": ">=7.0",
     "ext-bcmath": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.0"
+    "phpunit/phpunit": "~6.0"
   },
   "autoload": {
     "psr-4": {

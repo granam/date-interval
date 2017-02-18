@@ -2,8 +2,9 @@
 namespace Granam\Tests\DateInterval;
 
 use Granam\DateInterval\DateInterval;
+use PHPUnit\Framework\TestCase;
 
-class DateIntervalTest extends \PHPUnit_Framework_TestCase
+class DateIntervalTest extends TestCase
 {
     public function getDiffs()
     {
