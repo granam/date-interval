@@ -1,7 +1,4 @@
-.*
-!.gitignore
-!.travis.yml
-!.codeclimate.yml
-composer.lock
+/.gitignore
+/composer.lock
 /vendor
 /phpunit_log

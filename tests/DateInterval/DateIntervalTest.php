@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace Granam\Tests\DateInterval;
 
 use Granam\DateInterval\DateInterval;
@@ -131,12 +132,10 @@ class DateIntervalTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The "days" property is not set.
-     */
     public function testToSecondsUsingDaysNotSet()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The "days" property is not set.');
         $interval = new DateInterval('PT0S');
         DateInterval::toSecondsUsingDays($interval);
     }

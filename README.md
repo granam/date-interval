@@ -14,10 +14,11 @@ Usage
 use Granam\DateInterval\DateInterval;
 
 $interval = new DateInterval('P2H');
-
 echo $interval->toSeconds(); // "7200"
-
 echo $interval->toSpec(); // "P2H"
+
+$fromSeconds = DateInterval::fromSeconds(7201);
+echo $fromSeconds->toSpec(); // P2HS1
 ```
 
 Summary
@@ -27,7 +28,7 @@ The `DateInterval` class builds on the existing `DateInterval` class provided by
 
 - convert `DateInterval` to the [interval spec](http://php.net/manual/en/dateinterval.construct.php)
 - convert `DateInterval` to the number of seconds
-    - convert back to `DateInterval` from the number of seconds
+- convert number of seconds to `DateInterval`
 
 Installation
 ------------

@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=0);
+
 namespace Granam\DateInterval;
 
 /**
@@ -10,40 +11,30 @@ class DateInterval extends \DateInterval
 {
     /**
      * Number of seconds in a minute.
-     *
-     * @var integer
      */
-    const SECONDS_MINUTE = 60;
+    public const SECONDS_MINUTE = 60;
 
     /**
      * Number of seconds in an hour.
-     *
-     * @var integer
      */
-    const SECONDS_HOUR = 3600;
+    public const SECONDS_HOUR = 3600;
 
     /**
      * Number of seconds in a day.
-     *
-     * @var integer
      */
-    const SECONDS_DAY = 86400;
+    public const SECONDS_DAY = 86400;
 
     /**
      * The number of seconds in a month.
      * Based on a 30.4368 day month, with the product rounded.
-     *
-     * @var integer
      */
-    const SECONDS_MONTH = 2629740;
+    public const SECONDS_MONTH = 2629740;
 
     /**
      * The number of seconds in a year.
      * Based on a 365.2416 day year, with the product rounded.
-     *
-     * @var integer
      */
-    const SECONDS_YEAR = 31556874;
+    public const SECONDS_YEAR = 31556874;
 
     /**
      * The date properties.
@@ -172,7 +163,7 @@ class DateInterval extends \DateInterval
      * @param \DateInterval $interval The date interval.
      * @return string The interval specification.
      */
-    public function toSpec(\DateInterval $interval = null)
+    public function toSpec(\DateInterval $interval = null): string
     {
         if (null === $interval) {
             $interval = $this;
